@@ -1,0 +1,127 @@
+// Prisma schema for RentIA Colombia
+// Focused on rental price analysis, predictions, and automated ETL workflows.
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  password  String   // Hashed password
+  role      Role     @default(Analista)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  auditLogs AuditLog[]
+}
+
+enum Role {
+  Administrador
+  Analista
+}
+
+model Property {
+  id              String         @id @default(uuid())
+  department      String
+  municipality    String
+  neighborhoodId  String
+  neighborhood    Neighborhood   @relation(fields: [neighborhoodId], references: [id])
+  address         String
+  estrato         Int
+  area            Float
+  bedrooms        Int
+  bathrooms       Int
+  parking         Int            @default(0)
+  administration  Float          @default(0)
+  propertyType    PropertyType
+  price           Float          // Rental price in COP
+  latitude        Float
+  longitude       Float
+  publishDate     DateTime       @default(now())
+  agency          String
+  ageYears        Int            @default(0)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  predictions     Prediction[]
+}
+
+enum PropertyType {
+  Apartamento
+  Casa
+  Apartaestudio
+  Oficina
+}
+
+model Neighborhood {
+  id            String     @id @default(uuid())
+  name          String     @unique
+  municipality  String
+  department    String
+  growthRate    Float      @default(0.0) // Metric representing year-over-year percentage rent growth
+  properties    Property[]
+}
+
+model Prediction {
+  id             String    @id @default(uuid())
+  propertyId     String?
+  property       Property? @relation(fields: [propertyId], references: [id])
+  department     String
+  municipality   String
+  neighborhood   String
+  estrato        Int
+  area           Float
+  bedrooms       Int
+  bathrooms      Int
+  parking        Int
+  estimatedValue Float
+  confidenceMin  Float
+  confidenceMax  Float
+  modelUsed      String
+  createdAt      DateTime  @default(now())
+}
+
+model ModelVersion {
+  id             String   @id @default(uuid())
+  version        String   @unique
+  isActive       Boolean  @default(false)
+  mae            Float
+  rmse           Float
+  r2             Float
+  coefficients   Json     // Stores TS/Python model weights for prediction estimation
+  trainedAt      DateTime @default(now())
+  trainedOnCount Int
+}
+
+model InterestPlace {
+  id          String   @id @default(uuid())
+  name        String
+  category    String   // Hospital, Universidad, Colegio, Centro Comercial, Parque, etc.
+  latitude    Float
+  longitude   Float
+  createdAt   DateTime @default(now())
+}
+
+model TrainingDataset {
+  id           String   @id @default(uuid())
+  sourceFile   String   // Loaded CSV or Excel filename
+  recordCount  Int
+  accuracyScore Float
+  importedAt   DateTime @default(now())
+  metadata     Json?
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  userEmail String   // Track user email for records
+  action    String
+  details   String
+  timestamp DateTime @default(now())
+}

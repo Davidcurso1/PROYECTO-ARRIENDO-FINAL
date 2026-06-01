@@ -1,0 +1,6 @@
+{
+  "name": "RentIA Colombia",
+  "description": "Plataforma SaaS predictiva y analítica de arriendos en Colombia potenciada por Machine Learning e Inteligencia Artificial.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

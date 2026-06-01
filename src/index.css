@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+/* Premium Dark Theme Overrides */
+.dark-theme {
+  --bg-main: #0a0e1a;
+  --bg-card: #141b2e;
+  --bg-sub: #1e2840;
+  --text-main: #f8fafc;
+  --text-sub: #cbd5e1;
+  --text-muted: #94a3b8;
+  --border-color: #2d3b58;
+  --border-light: #1e2840;
+
+  background-color: var(--bg-main) !important;
+  color: var(--text-main) !important;
+}
+
+/* Style main containers & text under dark mode */
+.dark-theme #rentia-saas-root {
+  background-color: var(--bg-main) !important;
+  color: var(--text-main) !important;
+}
+
+.dark-theme header,
+.dark-theme footer {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme nav {
+  background-color: var(--bg-sub) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme nav button {
+  color: var(--text-sub) !important;
+}
+
+.dark-theme nav button:hover {
+  color: var(--text-main) !important;
+}
+
+.dark-theme select, 
+.dark-theme input, 
+.dark-theme textarea {
+  background-color: var(--bg-main) !important;
+  color: var(--text-main) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme select option {
+  background-color: var(--bg-card) !important;
+  color: var(--text-main) !important;
+}
+
+/* Dashboard metric cards, containers, bento cards */
+.dark-theme .bg-white {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme .bg-slate-50,
+.dark-theme .bg-slate-50\/60,
+.dark-theme .bg-slate-50\/80,
+.dark-theme .bg-slate-100 {
+  background-color: var(--bg-sub) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-main) !important;
+}
+
+/* Text elements */
+.dark-theme .text-slate-850,
+.dark-theme .text-slate-800,
+.dark-theme .text-slate-755,
+.dark-theme .text-slate-700,
+.dark-theme .text-slate-900,
+.dark-theme .text-slate-700 *,
+.dark-theme .text-slate-850 *,
+.dark-theme .text-slate-800 * {
+  color: var(--text-main) !important;
+}
+
+.dark-theme .text-slate-600,
+.dark-theme .text-slate-550,
+.dark-theme .text-slate-500,
+.dark-theme .text-slate-650 {
+  color: var(--text-sub) !important;
+}
+
+.dark-theme .text-slate-400 {
+  color: var(--text-muted) !important;
+}
+
+/* Tooltips & legends in Recharts */
+.dark-theme .recharts-default-tooltip {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme .recharts-tooltip-item-list * {
+  color: var(--text-main) !important;
+}
+
+/* Highlight alerts */
+.dark-theme .bg-blue-50,
+.dark-theme .bg-blue-50\/50,
+.dark-theme .bg-blue-50\/70,
+.dark-theme .bg-gradient-to-br {
+  background-color: rgba(59, 130, 246, 0.15) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+.dark-theme .text-blue-950,
+.dark-theme .text-blue-900 {
+  color: #60a5fa !important;
+}
+
+.dark-theme .text-blue-700,
+.dark-theme .text-blue-800 {
+  color: #93c5fd !important;
+}
+
+.dark-theme .bg-emerald-50,
+.dark-theme .bg-emerald-55 {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+.dark-theme .text-emerald-700,
+.dark-theme .text-emerald-600 {
+  color: #34d399 !important;
+}
+
+.dark-theme .bg-rose-50,
+.dark-theme .bg-amber-50,
+.dark-theme .bg-indigo-50 {
+  background-color: rgba(30, 41, 59, 0.6) !important;
+}
+
+/* Range sliders */
+.dark-theme input[type="range"] {
+  background-color: var(--bg-sub) !important;
+}
+
+/* Admin lists & tables */
+.dark-theme table {
+  color: var(--text-sub) !important;
+}
+
+.dark-theme thead {
+  background-color: var(--bg-sub) !important;
+  color: var(--text-main) !important;
+}
+
+.dark-theme tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
