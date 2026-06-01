@@ -250,12 +250,20 @@ export default function App() {
 
         {/* Error Notification Alert */}
         {errorText && (
-          <div className="mb-6 bg-rose-50 border border-rose-100 p-4 rounded-2xl flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
-            <div className="text-left">
-              <span className="text-xs font-bold text-rose-800">Fallo de Comunicación Base de Datos</span>
-              <p className="text-[11px] text-rose-600 mt-1">{errorText}</p>
+          <div className="mb-6 bg-rose-50 border border-rose-100 p-4 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-start gap-3">
+              <AlertCircle className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
+              <div className="text-left">
+                <span className="text-xs font-bold text-rose-800">Fallo de Comunicación Base de Datos</span>
+                <p className="text-[11px] text-rose-600 mt-1">{errorText}</p>
+              </div>
             </div>
+            <button
+              onClick={fetchLocalAssets}
+              className="px-3.5 py-1.5 bg-rose-600 hover:bg-rose-700 text-white font-semibold text-xs rounded-lg transition-all shadow-xs shrink-0 self-start sm:self-center cursor-pointer"
+            >
+              Reintentar Conexión
+            </button>
           </div>
         )}
 
